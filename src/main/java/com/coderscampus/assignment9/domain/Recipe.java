@@ -1,20 +1,37 @@
 package com.coderscampus.assignment9.domain;
 
+import org.apache.commons.csv.CSVRecord;
+
 public class Recipe {
-    private Integer cookingMinutes;
+    private int cookingMinutes;
     private boolean dairyFree;
     private boolean glutenFree;
     private String instructions;
-    private Double preparationMinutes;
-    private Double pricePerServing;
-    private Integer readyInMinutes;
-    private Integer servings;
-    private Double spoonacularScore;
+    private double preparationMinutes;
+    private double pricePerServing;
+    private int readyInMinutes;
+    private int servings;
+    private double spoonacularScore;
     private String title;
-    private Boolean vegan;
-    private Boolean vegetarian;
+    private boolean vegan;
+    private boolean vegetarian;
 
     public Recipe() {
+    }
+
+    public Recipe(int cookingMinutes, boolean dairyFree, boolean glutenFree, String instructions, double preparationMinutes, double pricePerServing, int readyInMinutes, int servings, double spoonacularScore, String title, boolean vegan, boolean vegetarian) {
+        this.cookingMinutes = cookingMinutes;
+        this.dairyFree = dairyFree;
+        this.glutenFree = glutenFree;
+        this.instructions = instructions;
+        this.preparationMinutes = preparationMinutes;
+        this.pricePerServing = pricePerServing;
+        this.readyInMinutes = readyInMinutes;
+        this.servings = servings;
+        this.spoonacularScore = spoonacularScore;
+        this.title = title;
+        this.vegan = vegan;
+        this.vegetarian = vegetarian;
     }
 
     public Integer getCookingMinutes() {
@@ -129,5 +146,22 @@ public class Recipe {
                 ", vegan=" + vegan +
                 ", vegetarian=" + vegetarian +
                 '}';
+    }
+
+    public static Recipe fromCSV(CSVRecord line) {
+        int cookingMinutes = Integer.parseInt(line.get("Cooking Minutes"));
+        boolean dairyFree = Boolean.parseBoolean(line.get("Dairy Free"));
+        boolean glutenFree = Boolean.parseBoolean(line.get("Gluten Free"));
+        String instructions = line.get("Instructions");
+        double preparationMinutes = Double.parseDouble(line.get("Preparation Minutes"));
+        double pricePerServing = Double.parseDouble(line.get("Price Per Serving"));
+        int readyInMinutes = Integer.parseInt(line.get("Ready In Minutes"));
+        int servings = Integer.parseInt(line.get("Servings"));
+        double spoonacularScore = Double.parseDouble(line.get("Spoonacular Score"));
+        String title = line.get("Title");
+        boolean vegan = Boolean.parseBoolean(line.get("Vegan"));
+        boolean vegetarian = Boolean.parseBoolean(line.get("Vegetarian"));
+
+        return new Recipe(cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes, pricePerServing, readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian);
     }
 }
