@@ -1,6 +1,7 @@
 package com.coderscampus.assignment9.service;
 
 import com.coderscampus.assignment9.domain.Recipe;
+import com.coderscampus.assignment9.utils.RecipeCSVMapper;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class RecipeService {
 
             for (CSVRecord line : recipes) {
                 try {
-                    recipeList.add(Recipe.fromCSV(line));
+                    recipeList.add(RecipeCSVMapper.map(line));
                 } catch (RuntimeException e) {
                     System.out.println("There was an issue parsing the CSV file, Issue " + e.getMessage());
                 }

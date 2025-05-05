@@ -1,7 +1,5 @@
 package com.coderscampus.assignment9.domain;
 
-import org.apache.commons.csv.CSVRecord;
-
 public class Recipe {
     private int cookingMinutes;
     private boolean dairyFree;
@@ -34,11 +32,11 @@ public class Recipe {
         this.vegetarian = vegetarian;
     }
 
-    public Integer getCookingMinutes() {
+    public int getCookingMinutes() {
         return cookingMinutes;
     }
 
-    public void setCookingMinutes(Integer cookingMinutes) {
+    public void setCookingMinutes(int cookingMinutes) {
         this.cookingMinutes = cookingMinutes;
     }
 
@@ -66,43 +64,43 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public Double getPreparationMinutes() {
+    public double getPreparationMinutes() {
         return preparationMinutes;
     }
 
-    public void setPreparationMinutes(Double preparationMinutes) {
+    public void setPreparationMinutes(double preparationMinutes) {
         this.preparationMinutes = preparationMinutes;
     }
 
-    public Double getPricePerServing() {
+    public double getPricePerServing() {
         return pricePerServing;
     }
 
-    public void setPricePerServing(Double pricePerServing) {
+    public void setPricePerServing(double pricePerServing) {
         this.pricePerServing = pricePerServing;
     }
 
-    public Integer getReadyInMinutes() {
+    public int getReadyInMinutes() {
         return readyInMinutes;
     }
 
-    public void setReadyInMinutes(Integer readyInMinutes) {
+    public void setReadyInMinutes(int readyInMinutes) {
         this.readyInMinutes = readyInMinutes;
     }
 
-    public Integer getServings() {
+    public int getServings() {
         return servings;
     }
 
-    public void setServings(Integer servings) {
+    public void setServings(int servings) {
         this.servings = servings;
     }
 
-    public Double getSpoonacularScore() {
+    public double getSpoonacularScore() {
         return spoonacularScore;
     }
 
-    public void setSpoonacularScore(Double spoonacularScore) {
+    public void setSpoonacularScore(double spoonacularScore) {
         this.spoonacularScore = spoonacularScore;
     }
 
@@ -114,19 +112,19 @@ public class Recipe {
         this.title = title;
     }
 
-    public Boolean getVegan() {
+    public boolean getVegan() {
         return vegan;
     }
 
-    public void setVegan(Boolean vegan) {
+    public void setVegan(boolean vegan) {
         this.vegan = vegan;
     }
 
-    public Boolean getVegetarian() {
+    public boolean getVegetarian() {
         return vegetarian;
     }
 
-    public void setVegetarian(Boolean vegetarian) {
+    public void setVegetarian(boolean vegetarian) {
         this.vegetarian = vegetarian;
     }
 
@@ -146,22 +144,5 @@ public class Recipe {
                 ", vegan=" + vegan +
                 ", vegetarian=" + vegetarian +
                 '}';
-    }
-
-    public static Recipe fromCSV(CSVRecord line) {
-        int cookingMinutes = Integer.parseInt(line.get("Cooking Minutes"));
-        boolean dairyFree = Boolean.parseBoolean(line.get("Dairy Free"));
-        boolean glutenFree = Boolean.parseBoolean(line.get("Gluten Free"));
-        String instructions = line.get("Instructions");
-        double preparationMinutes = Double.parseDouble(line.get("Preparation Minutes"));
-        double pricePerServing = Double.parseDouble(line.get("Price Per Serving"));
-        int readyInMinutes = Integer.parseInt(line.get("Ready In Minutes"));
-        int servings = Integer.parseInt(line.get("Servings"));
-        double spoonacularScore = Double.parseDouble(line.get("Spoonacular Score"));
-        String title = line.get("Title");
-        boolean vegan = Boolean.parseBoolean(line.get("Vegan"));
-        boolean vegetarian = Boolean.parseBoolean(line.get("Vegetarian"));
-
-        return new Recipe(cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes, pricePerServing, readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian);
     }
 }
