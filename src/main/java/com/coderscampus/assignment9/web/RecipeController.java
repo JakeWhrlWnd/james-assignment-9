@@ -2,20 +2,18 @@ package com.coderscampus.assignment9.web;
 
 import com.coderscampus.assignment9.domain.Recipe;
 import com.coderscampus.assignment9.service.RecipeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class RecipeController {
 
-    @Autowired
-    RecipeService recipeService;
-
-    @Autowired
-    List<Recipe> recipes;
+    private final RecipeService recipeService;
+    private final List<Recipe> recipes;
 
     @GetMapping("/gluten-free")
     public List<Recipe> getGlutenFree() {

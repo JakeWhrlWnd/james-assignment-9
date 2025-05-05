@@ -1,7 +1,9 @@
 package com.coderscampus.assignment9.service;
 
 import com.coderscampus.assignment9.domain.Recipe;
+import com.coderscampus.assignment9.repository.RecipeRepository;
 import com.coderscampus.assignment9.utils.RecipeCSVMapper;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RecipeService {
+
+    private final RecipeRepository recipeRepository;
 
     private static final CSVFormat RECIPE_CSV_FORMAT = CSVFormat.DEFAULT.builder()
             .setHeader()
