@@ -10,5 +10,5 @@ import java.util.function.Predicate;
 public interface RecipeRepository {
     void saveRecipes(List<Recipe> recipes);
     List<Recipe> findAllRecipes();
-    List<Recipe> findRecipesByCategory(Predicate<Recipe> category);
+    List<Recipe> findRecipesBy(Predicate<Recipe> filter);
 }

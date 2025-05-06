@@ -46,4 +46,28 @@ public class RecipeService {
 
         return recipeList;
     }
+
+    public void saveRecipes(List<Recipe> recipes) {
+        recipeRepository.saveRecipes(recipes);
+    }
+
+    public List<Recipe> getAllRecipes() {
+        return recipeRepository.findAllRecipes();
+    }
+
+    public List<Recipe> getVeganRecipes() {
+        return recipeRepository.findRecipesBy(Recipe::isVegan);
+    }
+
+    public List<Recipe> getGlutenFree() {
+        return recipeRepository.findRecipesBy(Recipe::isGlutenFree);
+    }
+
+    public List<Recipe> getVeganAndGlutenFreeRecipes() {
+        return recipeRepository.findRecipesBy(recipe -> recipe.isVegan() && recipe.isGlutenFree());
+    }
+
+    public List<Recipe> getVegetarianRecipes() {
+        return recipeRepository.findRecipesBy(Recipe::isVegetarian);
+    }
 }

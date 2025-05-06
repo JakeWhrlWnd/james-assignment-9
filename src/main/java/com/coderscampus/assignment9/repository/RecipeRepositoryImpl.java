@@ -23,9 +23,9 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     }
 
     @Override
-    public List<Recipe> findRecipesByCategory(Predicate<Recipe> category) {
+    public List<Recipe> findRecipesBy(Predicate<Recipe> filter) {
         return recipeStorage.stream()
-                .filter(category)
+                .filter(filter)
                 .collect(Collectors.toList());
     }
 }
