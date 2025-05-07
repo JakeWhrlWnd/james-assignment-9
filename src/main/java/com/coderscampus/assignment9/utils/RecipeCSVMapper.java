@@ -6,6 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 public class RecipeCSVMapper {
 
         public static Recipe map(CSVRecord line) {
+
                 int cookingMinutes = parseInt(line.get("Cooking Minutes"), 0);
                 boolean dairyFree = Boolean.parseBoolean(line.get("Dairy Free"));
                 boolean glutenFree = Boolean.parseBoolean(line.get("Gluten Free"));
@@ -19,11 +20,13 @@ public class RecipeCSVMapper {
                 boolean vegan = Boolean.parseBoolean(line.get("Vegan"));
                 boolean vegetarian = Boolean.parseBoolean(line.get("Vegetarian"));
 
-                return new Recipe(cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes, pricePerServing, readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian);
+                return new Recipe(cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes,
+                        pricePerServing, readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian);
         }
+
         private static Integer parseInt(String input, int defaultValue) {
                 try {
-                        return Integer.parseInt(input);
+                        return Integer.parseInt(input.trim());
                 } catch (NumberFormatException e) {
                         System.out.println("Input is not an integer");
                         return defaultValue;
@@ -32,7 +35,7 @@ public class RecipeCSVMapper {
 
         private static Double parseDouble(String input, double defaultValue) {
                 try {
-                        return Double.parseDouble(input);
+                        return Double.parseDouble(input.trim());
                 } catch (NumberFormatException e) {
                         System.out.println("Input is not a double");
                         return defaultValue;
@@ -40,6 +43,6 @@ public class RecipeCSVMapper {
         }
 
         private static String getOrDefault(String input, String fallback) {
-                return (input == null || input.isBlank()) ? fallback : input.trim();
+                return (input == null || input.isBlank()) ? input : fallback;
         }
 }
