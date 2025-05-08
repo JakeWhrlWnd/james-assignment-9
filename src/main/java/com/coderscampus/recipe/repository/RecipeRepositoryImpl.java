@@ -1,6 +1,6 @@
-package com.coderscampus.assignment9.repository;
+package com.coderscampus.recipe.repository;
 
-import com.coderscampus.assignment9.domain.Recipe;
+import com.coderscampus.recipe.domain.Recipe;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
-package com.coderscampus.assignment9.service;
+package com.coderscampus.recipe.service;
 
-import com.coderscampus.assignment9.domain.Recipe;
-import com.coderscampus.assignment9.repository.RecipeRepository;
-import com.coderscampus.assignment9.utils.RecipeCSVMapper;
+import com.coderscampus.recipe.domain.Recipe;
+import com.coderscampus.recipe.repository.RecipeRepository;
+import com.coderscampus.recipe.utils.RecipeCSVMapper;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
@@ -23,7 +23,7 @@ public class RecipeService {
     private static final CSVFormat RECIPE_CSV_FORMAT = CSVFormat.RFC4180.builder()
             .setHeader()
             .setIgnoreHeaderCase(true)
-            .setTrim(false)
+            .setTrim(true)
             .setQuote('"')
             .get();
 

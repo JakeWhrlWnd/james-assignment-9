@@ -1,7 +1,7 @@
-package com.coderscampus.assignment9.web;
+package com.coderscampus.recipe.web;
 
-import com.coderscampus.assignment9.domain.Recipe;
-import com.coderscampus.assignment9.service.RecipeService;
+import com.coderscampus.recipe.domain.Recipe;
+import com.coderscampus.recipe.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

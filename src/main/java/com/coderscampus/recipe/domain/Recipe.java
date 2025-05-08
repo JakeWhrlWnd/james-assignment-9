@@ -1,4 +1,4 @@
-package com.coderscampus.assignment9.domain;
+package com.coderscampus.recipe.domain;
 
 import lombok.*;
 
