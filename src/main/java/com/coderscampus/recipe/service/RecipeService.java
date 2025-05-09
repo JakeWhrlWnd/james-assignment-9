@@ -21,10 +21,9 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
 
     private static final CSVFormat RECIPE_CSV_FORMAT = CSVFormat.RFC4180.builder()
-            .setHeader()
-            .setIgnoreHeaderCase(true)
-            .setTrim(true)
-            .setQuote('"')
+            .setHeader("Cooking Minutes", "Dairy Free", "Gluten Free", "Instructions", "Preparation Minutes", "Price " +
+                    "Per Serving", "Ready In Minutes", "Servings", "Spoonacular Score", "Title", "Vegan", "Vegetarian")
+            .setSkipHeaderRecord(true)
             .get();
 
     public List<Recipe> read(String fileName) {

@@ -5,23 +5,27 @@ import org.apache.commons.csv.CSVRecord;
 
 public class RecipeCSVMapper {
 
+        private final static Recipe recipe = new Recipe();
+
         public static Recipe map(CSVRecord line) {
 
-                int cookingMinutes = parseInt(line.get("Cooking Minutes"));
-                boolean dairyFree = Boolean.parseBoolean(line.get("Dairy Free"));
-                boolean glutenFree = Boolean.parseBoolean(line.get("Gluten Free"));
-                String instructions = getOrDefault(line.get("Instructions"), "No instructions provided");
-                double preparationMinutes = parseDouble(line.get("Preparation Minutes"));
-                double pricePerServing = parseDouble(line.get("Price Per Serving"));
-                int readyInMinutes = parseInt(line.get("Ready In Minutes"));
-                int servings = parseInt(line.get("Servings"));
-                double spoonacularScore = parseDouble(line.get("Spoonacular Score"));
-                String title = getOrDefault(line.get("Title"), "No title provided");
-                boolean vegan = Boolean.parseBoolean(line.get("Vegan"));
-                boolean vegetarian = Boolean.parseBoolean(line.get("Vegetarian"));
+                recipe.setCookingMinutes(parseInt(line.get("Cooking Minutes")));
+                recipe.setDairyFree(Boolean.parseBoolean(line.get("Dairy Free")));
+                recipe.setGlutenFree(Boolean.parseBoolean(line.get("Gluten Free")));
+                recipe.setInstructions(getOrDefault(line.get("Instructions"), "No instructions provided"));
+                recipe.setPreparationMinutes(parseDouble(line.get("Preparation Minutes")));
+                recipe.setPricePerServing(parseDouble(line.get("Price Per Serving")));
+                recipe.setReadyInMinutes(parseInt(line.get("Ready In Minutes")));
+                recipe.setServings(parseInt(line.get("Servings")));
+                recipe.setSpoonacularScore(parseDouble(line.get("Spoonacular Score")));
+                recipe.setTitle(getOrDefault(line.get("Title"), "No title provided"));
+                recipe.setVegan(Boolean.parseBoolean(line.get("Vegan")));
+                recipe.setVegetarian(Boolean.parseBoolean(line.get("Vegetarian")));
 
-                return new Recipe(cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes,
-                        pricePerServing, readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian);
+                return new Recipe(recipe.getCookingMinutes(), recipe.isDairyFree(), recipe.isGlutenFree(),
+                        recipe.getInstructions(), recipe.getPreparationMinutes(), recipe.getPricePerServing(),
+                        recipe.getReadyInMinutes(), recipe.getServings(), recipe.getSpoonacularScore(),
+                        recipe.getTitle(), recipe.isVegan(), recipe.isVegetarian());
         }
 
         private static Integer parseInt(String input) {
