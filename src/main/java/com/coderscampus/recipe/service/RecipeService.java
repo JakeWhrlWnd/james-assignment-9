@@ -20,10 +20,13 @@ public class RecipeService {
 
     private final RecipeRepository recipeRepository;
 
-    private static final CSVFormat RECIPE_CSV_FORMAT = CSVFormat.RFC4180.builder()
-            .setHeader("Cooking Minutes", "Dairy Free", "Gluten Free", "Instructions", "Preparation Minutes", "Price " +
-                    "Per Serving", "Ready In Minutes", "Servings", "Spoonacular Score", "Title", "Vegan", "Vegetarian")
+    private static final CSVFormat RECIPE_CSV_FORMAT = CSVFormat.DEFAULT.builder()
+            .setHeader()
+            .setIgnoreSurroundingSpaces(true)
             .setSkipHeaderRecord(true)
+            .setQuote('"')
+            .setEscape('\\')
+            .setTrim(true)
             .get();
 
     public List<Recipe> read(String fileName) {
@@ -33,7 +36,6 @@ public class RecipeService {
             Iterable<CSVRecord> recipes = RECIPE_CSV_FORMAT.parse(reader);
 
             for (CSVRecord line : recipes) {
-                System.out.println("Column count: " + line.size());
                 try {
                     recipeList.add(RecipeCSVMapper.map(line));
                 } catch (RuntimeException e) {
