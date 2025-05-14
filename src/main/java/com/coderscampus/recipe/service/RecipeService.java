@@ -2,57 +2,16 @@ package com.coderscampus.recipe.service;
 
 import com.coderscampus.recipe.domain.Recipe;
 import com.coderscampus.recipe.repository.RecipeRepository;
-import com.coderscampus.recipe.utils.RecipeCSVMapper;
-import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
-
-    private static final CSVFormat RECIPE_CSV_FORMAT = CSVFormat.DEFAULT.builder()
-            .setHeader()
-            .setIgnoreSurroundingSpaces(true)
-            .setSkipHeaderRecord(true)
-            .setQuote('"')
-            .setEscape('\\')
-            .setTrim(true)
-            .get();
-
-    public List<Recipe> read(String fileName) {
-        List<Recipe> recipeList = new ArrayList<>();
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8))) {
-            Iterable<CSVRecord> recipes = RECIPE_CSV_FORMAT.parse(reader);
-
-            for (CSVRecord line : recipes) {
-                try {
-                    recipeList.add(RecipeCSVMapper.map(line));
-                } catch (RuntimeException e) {
-                    System.out.println("There was an issue parsing the CSV file, Issue " + e.getMessage());
-                }
-            }
-
-        } catch (IOException e) {
-            System.out.println("There was an issue reading the file, Issue " + e.getMessage());
-        }
-
-        return recipeList;
-    }
-
-    public void saveRecipes(List<Recipe> recipes) {
-        recipeRepository.saveRecipes(recipes);
-    }
 
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAllRecipes();
@@ -72,11 +31,5 @@ public class RecipeService {
 
     public List<Recipe> getVegetarianRecipes() {
         return recipeRepository.findRecipesBy(Recipe::isVegetarian);
-    }
-
-    @PostConstruct
-    public void init() {
-        List<Recipe> recipes = read("recipes.txt");
-        saveRecipes(recipes);
     }
 }

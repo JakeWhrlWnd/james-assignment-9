@@ -2,11 +2,13 @@ package com.coderscampus.recipe.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Setter
 @Getter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonPropertyOrder({
@@ -48,4 +50,22 @@ public class Recipe {
     private boolean vegan;
     @JsonProperty("Vegetarian")
     private boolean vegetarian;
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "cookingMinutes=" + cookingMinutes +
+                ", dairyFree=" + dairyFree +
+                ", glutenFree=" + glutenFree +
+                ", instructions='" + instructions + '\'' +
+                ", preparationMinutes=" + preparationMinutes +
+                ", pricePerServing=" + pricePerServing +
+                ", readyInMinutes=" + readyInMinutes +
+                ", servings=" + servings +
+                ", spoonacularScore=" + spoonacularScore +
+                ", title='" + title + '\'' +
+                ", vegan=" + vegan +
+                ", vegetarian=" + vegetarian +
+                '}';
+    }
 }
