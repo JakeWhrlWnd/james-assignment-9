@@ -1,0 +1,1 @@
+For this project, I used the Apache Commons CSV project to parse a text file (recipe.txt).  The parsed file is stored in a Java Collection as a POJO.  From here, I created endpoints in a RestController for different recipe types ("vegan", "vegetarian", etc). For a final polish to the application I utilized the Lombok library for a minimized codebase.
